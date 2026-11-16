@@ -1,0 +1,175 @@
+:root {
+  --bg-top: #e9eefc;
+  --bg-bottom: #f6f8ff;
+  --card: #fff;
+  --ink: #111827;
+  --muted: #6b7280;
+  --line: #eef0f4;
+  --blue: #3b82f6;
+  --blue-soft: #dbeafe;
+  --accent: #8b6fd6;
+  --danger: #ef4444;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px 16px;
+  background: linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--ink);
+}
+
+/* ---------- Card ---------- */
+.card {
+  width: min(100%, 640px);
+  padding: 20px 20px 14px;
+  background: var(--card);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(30, 41, 90, 0.12);
+}
+
+h1 { font-size: 1.15rem; margin-bottom: 14px; }
+
+/* ---------- Add row ---------- */
+.add-row { display: flex; gap: 8px; }
+
+.add-row input {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #fafbff;
+  font: inherit;
+  font-size: 0.9rem;
+}
+.add-row input:focus { outline: 2px solid var(--blue-soft); border-color: var(--blue); }
+
+.btn-add {
+  padding: 0 18px;
+  border: none;
+  border-radius: 10px;
+  background: var(--blue);
+  color: #fff;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: filter 0.15s, transform 0.08s;
+}
+.btn-add:hover { filter: brightness(1.08); }
+.btn-add:active { transform: scale(0.96); }
+
+/* ---------- Tip + filters ---------- */
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 14px 0 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+}
+.tip { font-size: 0.72rem; color: var(--muted); }
+
+.filters { display: flex; gap: 4px; }
+.filter {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.filter:hover { background: #f3f4f6; }
+.filter.active { background: var(--blue-soft); color: var(--blue); }
+
+/* ---------- List ---------- */
+.list { list-style: none; }
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 6px;
+  border-bottom: 1px solid var(--line);
+  animation: pop-in 0.18s ease-out;
+}
+
+@keyframes pop-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.check { width: 16px; height: 16px; accent-color: var(--accent); cursor: pointer; flex: none; }
+
+.label {
+  flex: 1;
+  font-size: 0.95rem;
+  cursor: text;
+  word-break: break-word;
+  user-select: none;
+}
+.item.done .label { color: #9ca3af; text-decoration: line-through; }
+
+.edit {
+  flex: 1;
+  padding: 6px 8px;
+  border: 1px solid var(--blue);
+  border-radius: 8px;
+  font: inherit;
+  font-size: 0.95rem;
+  outline: 2px solid var(--blue-soft);
+}
+
+.delete {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #b4b8c5;
+  cursor: pointer;
+  transition: color 0.15s, background-color 0.15s;
+}
+.delete:hover { color: var(--danger); background: #fef2f2; }
+
+.empty { padding: 18px 6px; text-align: center; font-size: 0.85rem; color: var(--muted); }
+.empty[hidden] { display: none; }
+
+/* ---------- Footer ---------- */
+.footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.saved { opacity: 0; transition: opacity 0.3s; color: #16a34a; }
+.saved.show { opacity: 1; }
+
+.footer-actions { margin-left: auto; display: flex; gap: 6px; }
+
+.btn-small {
+  padding: 3px 8px;
+  border: 1px solid #9ca3af;
+  border-radius: 4px;
+  background: #f3f4f6;
+  color: #4b5563;
+  font: inherit;
+  font-size: 0.72rem;
+  cursor: pointer;
+}
+.btn-small:hover:not(:disabled) { background: #e5e7eb; }
+.btn-small:disabled { opacity: 0.45; cursor: not-allowed; }
